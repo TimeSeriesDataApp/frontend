@@ -3,8 +3,6 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from '../navbar';
 import Dashboard from '../dashboard';
 
-const store = createStore();
-
 class App extends Component {
   render() {
     return (
