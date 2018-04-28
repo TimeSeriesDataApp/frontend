@@ -4,6 +4,7 @@ mongod.lock
 .test.env
 .vscode/**
 build/**
+.dev.env
 
 # Logs
 logs
