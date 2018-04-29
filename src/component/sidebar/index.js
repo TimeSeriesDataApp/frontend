@@ -17,8 +17,8 @@ class Sidebar extends Component {
   }
 
   handleSubmit(e) {
-    event.preventDefault();
-    this.props.handleLoadCharts(this.state);
+    e.preventDefault();
+    this.props.onComplete(this.state);
     // TODO: make sure sidebar goes away on mobile here
   }
 
