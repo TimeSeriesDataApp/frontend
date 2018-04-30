@@ -1,19 +1,16 @@
 import './sidebar.scss';
 import React, { Component } from 'react';
+import { renderIf } from '../../lib/utils';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       duration: 'hr',
-      cpu: false,
-      disk: false,
-      memory: false,
-      network: false,
     };
 
     // configure checkbox defaults
-    // this.props.devices.map(dev => this.state[dev.name] = false);
+    this.props.devices.map(dev => this.state[dev.name] = false);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +20,6 @@ class Sidebar extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.onComplete(this.state);
-    // TODO: make sure sidebar goes away on mobile here
   }
 
   handleCheckbox(e) {
@@ -42,33 +38,23 @@ class Sidebar extends Component {
       <div className='sidebar'>
         <h1>Diagnostics</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className='cbox-label'>
-            <input
-              type='checkbox'
-              name='cpu'
-              id='cboxcpu'
-              checked={this.state.cpu}
-              onChange={this.handleCheckbox}
-            />
-            <div className='oval-container'></div>
-            <label className='cbox-label' for='cboxcpu'>
-              <p className='label-term'>CPU</p>
-            </label>
-          </div>
-
-          <div className='cbox-label'>
-            <input
-              type='checkbox'
-              name='disk'
-              id='cboxdisk'
-              checked={this.state.disk}
-              onChange={this.handleCheckbox}
-            />
-            <div className='oval-container'></div>
-            <label className='cbox-label' for='cboxdisk'>
-              <p className='label-term'>Disk</p>
-            </label>
-          </div>
+          {renderIf(this.props.devices.length,
+            this.props.devices.map(dev =>
+              <div key={`${dev.name}-device`} className='cbox-label'>
+                <input
+                  type='checkbox'
+                  name={dev.name}
+                  id={`cbox${dev.name}`}
+                  checked={this.state[dev.name]}
+                  onChange={this.handleCheckbox}
+                />
+                <div className='oval-container'></div>
+                <label className='cbox-label' htmlFor={`cbox${dev.name}`}>
+                  <p className='label-term'>{dev.label}</p>
+                </label>
+              </div>
+            )
+          )}
 
           <p>Duration</p>
           <select

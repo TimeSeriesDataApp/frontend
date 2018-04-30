@@ -7,7 +7,7 @@ class Navbar extends Component {
       <React.Fragment>
         <input type='checkbox' id='cbox-sidebar-toggle'/>
         <div className='navbar'>
-          <label for='cbox-sidebar-toggle' className='label-sidebar-toggle'>≡</label>
+          <label htmlFor='cbox-sidebar-toggle' className='label-sidebar-toggle'>≡</label>
           <h1>Diagnostic Monitor</h1>
         </div>
       </React.Fragment>

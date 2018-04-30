@@ -72,12 +72,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    // let devices = [
-    //   { name: 'cpu', label: 'CPU' },
-    //   { name: 'disk', label: 'Disk' },
-    //   { name: 'memory', label: 'Memory' },
-    //   { name: 'network', label: 'Network' },
-    // ];
+    // master device list
+    let devices = [
+      { name: 'cpu', label: 'CPU' },
+      { name: 'disk', label: 'Disk' },
+      { name: 'memory', label: 'Memory' },
+      { name: 'network', label: 'Network' },
+    ];
 
     let chartData = this.state.rawData
       ? this.state.rawData.map(device => this.generateChartData(device))
@@ -90,9 +91,8 @@ class Dashboard extends Component {
           <div className='chart-list'>
             {renderIf(chartData,
               chartData.map(devChartData =>
-                <div className='chart-div'>
+                <div key={`chart-${devChartData.device}`} className='chart-div'>
                   <Chart
-                    key={devChartData.device}
                     device={devChartData.device}
                     chartData={devChartData.chartData}
                     xAxisLabel='Seconds'
@@ -103,7 +103,7 @@ class Dashboard extends Component {
             )}
           </div>
         </div>
-        <Sidebar onComplete={this.getDiagnosticData} />
+        <Sidebar devices={devices} onComplete={this.getDiagnosticData} />
       </React.Fragment>
     );
   }
