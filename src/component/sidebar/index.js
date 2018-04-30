@@ -1,3 +1,4 @@
+import './sidebar.scss';
 import React, { Component } from 'react';
 
 class Sidebar extends Component {
@@ -35,50 +36,60 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <form className='sidebar-form' onSubmit={this.handleSubmit}>
-        <label>CPU
-          <input
-            type='checkbox'
-            name='cpu'
-            id='cboxcpu'
-            checked={this.state.cpu}
-            onChange={this.handleCheckbox}
-          />
-        </label>
-        <label>Disk
-          <input
-            type='checkbox'
-            name='disk'
-            id='cboxdisk'
-            checked={this.state.disk}
-            onChange={this.handleCheckbox}
-          />
-        </label>
-        <label>Memory
-          <input
-            type='checkbox'
-            name='memory'
-            id='cboxmemory'
-            checked={this.state.memory}
-            onChange={this.handleCheckbox}
-          />
-        </label>
-        <label>Network
-          <input
-            type='checkbox'
-            name='network'
-            id='cboxnetwork'
-            checked={this.state.network}
-            onChange={this.handleCheckbox}
-          />
-        </label>
-        <p>Duration</p>
-        <select value={this.state.duration} name='duration' onChange={this.handleChange}>
-          <option value='hr'>1 Hour</option>
-          <option value="wk">1 Week</option>
-        </select>
-        <button type="submit">Update</button>
-      </form>
+      <div className='sidebar'>
+        Diagnostics
+        <form onSubmit={this.handleSubmit}>
+          <div className='cbox'>
+            <p>CPU</p>
+            <input
+              type='checkbox'
+              name='cpu'
+              id='cboxcpu'
+              checked={this.state.cpu}
+              onChange={this.handleCheckbox}
+            />
+            <label for='cboxcpu'></label>
+          </div>
+
+          <label>Disk
+            <input
+              type='checkbox'
+              name='disk'
+              id='cboxdisk'
+              checked={this.state.disk}
+              onChange={this.handleCheckbox}
+            />
+          </label>
+          <label>Memory
+            <input
+              type='checkbox'
+              name='memory'
+              id='cboxmemory'
+              checked={this.state.memory}
+              onChange={this.handleCheckbox}
+            />
+          </label>
+          <label>Network
+            <input
+              type='checkbox'
+              name='network'
+              id='cboxnetwork'
+              checked={this.state.network}
+              onChange={this.handleCheckbox}
+            />
+          </label>
+          <p>Duration</p>
+          <select
+            value={this.state.duration}
+            name='duration'
+            onChange={this.handleChange}
+          >
+            <option value='hr'>1 Hour</option>
+            <option value="wk">1 Week</option>
+          </select>
+          <button type="submit">Update</button>
+        </form>
+      </div>
     );
   }
 }

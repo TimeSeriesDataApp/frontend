@@ -1,3 +1,4 @@
+import './dashboard.scss';
 import React, { Component } from 'react';
 import Sidebar from '../sidebar';
 import Chart from '../chart';
@@ -76,25 +77,27 @@ class Dashboard extends Component {
       : null;
     console.log(this.state);
     return (
-      <div className='dashboard'>
-        <h2>Dashboard</h2>
-        <Sidebar onComplete={this.getDiagnosticData} />
-        <div className='chart-list'>
-          {renderIf(chartData,
-            chartData.map(devChartData =>
-              <div className='chart-div'>
-                <Chart
-                  key={devChartData.device}
-                  device={devChartData.device}
-                  chartData={devChartData.chartData}
-                  xAxisLabel='Seconds'
-                  yAxisLabel='Usage'
-                />
-              </div>
-            )
-          )}
+      <React.Fragment>
+        <div className='dashboard'>
+          <h2>Dashboard</h2>
+          <div className='chart-list'>
+            {renderIf(chartData,
+              chartData.map(devChartData =>
+                <div className='chart-div'>
+                  <Chart
+                    key={devChartData.device}
+                    device={devChartData.device}
+                    chartData={devChartData.chartData}
+                    xAxisLabel='Seconds'
+                    yAxisLabel='Usage'
+                  />
+                </div>
+              )
+            )}
+          </div>
         </div>
-      </div>
+        <Sidebar onComplete={this.getDiagnosticData} />
+      </React.Fragment>
     );
   }
 }

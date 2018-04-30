@@ -1,0 +1,34 @@
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.6);
+
+  h1 {
+    text-align: center;
+    font-size: 25px;
+    font-family: "Ubuntu", sans-serif;
+    margin-top: 5px;
+  }
+
+  /* menu toggle hamburger */
+  .label-sidebar-toggle {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 40px;
+    float: left;
+    margin-left: 10px;
+  }
+}
+
+/* hide the checkbox */
+#cbox-sidebar-toggle {
+  display: none;
+
+  /* when checked, show the sidebar */
+  &:checked ~ .sidebar {
+    left: 0px;
+  }
+}
