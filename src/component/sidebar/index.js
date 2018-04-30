@@ -25,11 +25,13 @@ class Sidebar extends Component {
   handleCheckbox(e) {
     let { name } = e.target;
     // toggle checked/unchecked
+    console.log(`handleCheckbox: Updating ${name}: ${!this.state[name]}`);
     this.setState({[name]: !this.state[name]});
   }
 
   handleChange(e) {
     let { name, value } = e.target;
+    console.log(`handleChange: Updating ${name}: ${value}`);
     this.setState({[name]: value});
   }
 
@@ -48,7 +50,8 @@ class Sidebar extends Component {
                   checked={this.state[dev.name]}
                   onChange={this.handleCheckbox}
                 />
-                <div className='oval-container'></div>
+                <div className='oval-container'>
+                </div>
                 <label className='cbox-label' htmlFor={`cbox${dev.name}`}>
                   <p className='label-term'>{dev.label}</p>
                 </label>
@@ -56,15 +59,28 @@ class Sidebar extends Component {
             )
           )}
 
-          <p>Duration</p>
-          <select
-            value={this.state.duration}
-            name='duration'
-            onChange={this.handleChange}
-          >
-            <option value='hr'>1 Hour</option>
-            <option value="wk">1 Week</option>
-          </select>
+          <div className='duration-types'>
+            <input
+              type='radio'
+              name='duration'
+              value='hr'
+              id='radio-hour'
+              checked={this.state.duration === 'hr'}
+              onChange={this.handleChange}
+            />
+            <label htmlFor='radio-hour'>1 Hour</label>
+
+            <input
+              type='radio'
+              name='duration'
+              value='wk'
+              id='radio-week'
+              checked={this.state.duration === 'wk'}
+              onChange={this.handleChange}
+            />
+            <label htmlFor='radio-week'>1 Week</label>
+          </div>
+
           <button type="submit">Update</button>
         </form>
       </div>
