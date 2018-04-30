@@ -25,13 +25,11 @@ class Sidebar extends Component {
   handleCheckbox(e) {
     let { name } = e.target;
     // toggle checked/unchecked
-    console.log(`handleCheckbox: Updating ${name}: ${!this.state[name]}`);
     this.setState({[name]: !this.state[name]});
   }
 
   handleChange(e) {
     let { name, value } = e.target;
-    console.log(`handleChange: Updating ${name}: ${value}`);
     this.setState({[name]: value});
   }
 
