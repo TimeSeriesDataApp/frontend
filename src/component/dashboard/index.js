@@ -72,6 +72,13 @@ class Dashboard extends Component {
   }
 
   render() {
+    // let devices = [
+    //   { name: 'cpu', label: 'CPU' },
+    //   { name: 'disk', label: 'Disk' },
+    //   { name: 'memory', label: 'Memory' },
+    //   { name: 'network', label: 'Network' },
+    // ];
+
     let chartData = this.state.rawData
       ? this.state.rawData.map(device => this.generateChartData(device))
       : null;

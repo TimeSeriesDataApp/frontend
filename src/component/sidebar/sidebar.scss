@@ -10,40 +10,62 @@
   z-index: 0;
   color: rgba(255, 255, 255, 0.6);
   font-family: "Ubuntu", sans-serif;
-  -webkit-font-smoothing: antialiased;
+  transition: left 300ms;
+  -webkit-transition: left 300ms;
 
-  .cbox {
-    width: 40px;
-    height: 40px;
-    background: #ddd;
-    // margin: 20px 90px;
+  /* oval sliding container */
+  .oval-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #ababab;
+    border-radius: 20px;
+    transition: all 300ms ease;
 
-    border-radius: 100%;
-    // position: relative;
-    position: relative;
-    box-shadow: 0px 1px 3px rgba(0,0,0,0.5);
-
-    label {
-      display: block;
-      width: 30px;
-      height: 30px;
-      border-radius: 100px;
-
-      transition: all .5s ease;
-      cursor: pointer;
+    /* circle in oval */
+    &:after {
       position: absolute;
-      top: 5px;
-      left: 5px;
-      z-index: 1;
-
-      background: #333;
-      box-shadow: inset 0px 1px 3px rgba(0,0,0,0.5);
-    }
-
-    /* highlight when checked */
-    input[type=checkbox]:checked + label {
-      background: #0494D5;
+      content: '';
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      top: 1px;
+      left: 1px;
+      transition: all 300ms ease;
     }
   }
 
+  .label-term {
+    position: relative;
+    top: 8px;
+    margin-left: 75px;
+    font-size: 16px;
+  }
+
+  .cbox-label {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 30px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+
+    input {
+      /* hide actual checkbox */
+      display: none;
+
+      /* change to green when checked */
+      &:checked + .oval-container {
+        background: #5fcf80;
+      }
+
+      /* move the circle when clicked */
+      &:checked + .oval-container:after {
+        transform: translateX(30px);
+      }
+    }
+  }
 }

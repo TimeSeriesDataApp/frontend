@@ -5,12 +5,15 @@ class Sidebar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      duration: 'hr',
       cpu: false,
       disk: false,
-      network: false,
       memory: false,
-      duration: 'hr',
+      network: false,
     };
+
+    // configure checkbox defaults
+    // this.props.devices.map(dev => this.state[dev.name] = false);
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,10 +40,9 @@ class Sidebar extends Component {
   render() {
     return (
       <div className='sidebar'>
-        Diagnostics
+        <h1>Diagnostics</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className='cbox'>
-            <p>CPU</p>
+          <div className='cbox-label'>
             <input
               type='checkbox'
               name='cpu'
@@ -48,10 +50,13 @@ class Sidebar extends Component {
               checked={this.state.cpu}
               onChange={this.handleCheckbox}
             />
-            <label for='cboxcpu'></label>
+            <div className='oval-container'></div>
+            <label className='cbox-label' for='cboxcpu'>
+              <p className='label-term'>CPU</p>
+            </label>
           </div>
 
-          <label>Disk
+          <div className='cbox-label'>
             <input
               type='checkbox'
               name='disk'
@@ -59,25 +64,12 @@ class Sidebar extends Component {
               checked={this.state.disk}
               onChange={this.handleCheckbox}
             />
-          </label>
-          <label>Memory
-            <input
-              type='checkbox'
-              name='memory'
-              id='cboxmemory'
-              checked={this.state.memory}
-              onChange={this.handleCheckbox}
-            />
-          </label>
-          <label>Network
-            <input
-              type='checkbox'
-              name='network'
-              id='cboxnetwork'
-              checked={this.state.network}
-              onChange={this.handleCheckbox}
-            />
-          </label>
+            <div className='oval-container'></div>
+            <label className='cbox-label' for='cboxdisk'>
+              <p className='label-term'>Disk</p>
+            </label>
+          </div>
+
           <p>Duration</p>
           <select
             value={this.state.duration}
