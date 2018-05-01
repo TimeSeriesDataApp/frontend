@@ -66,7 +66,7 @@ class Sidebar extends Component {
               checked={this.state.duration === 'hr'}
               onChange={this.handleChange}
             />
-            <label htmlFor='radio-hour'>1 Hour</label>
+            <label htmlFor='radio-hour'>Hour</label>
 
             <input
               type='radio'
@@ -76,7 +76,7 @@ class Sidebar extends Component {
               checked={this.state.duration === 'wk'}
               onChange={this.handleChange}
             />
-            <label htmlFor='radio-week'>1 Week</label>
+            <label htmlFor='radio-week'>Week</label>
           </div>
 
           <button type="submit">Update</button>
