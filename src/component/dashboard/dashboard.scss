@@ -2,5 +2,18 @@
 
 .dashboard {
   z-index: 0;
-  background-color: $color-lightblack;
+
+  .columns {
+    column-count: 3;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-width: 700px;
+    -moz-column-width: 700px;
+    -webkit-column-width: 700px;
+    column-gap: 3em;
+    -moz-column-gap: 3em;
+    -webkit-column-gap: 3em;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
 }
