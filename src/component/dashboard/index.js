@@ -114,8 +114,6 @@ class Dashboard extends Component {
     let chartData = this.state.rawData
       ? this.state.rawData.map(device => this.generateChartData(device))
       : null;
-    console.log('state:', this.state);
-    console.log('Chartdata:', chartData);
     return (
       <React.Fragment>
         <div className='dashboard'>
