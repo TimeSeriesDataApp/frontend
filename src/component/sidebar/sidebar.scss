@@ -1,0 +1,197 @@
+@import '../../style/variables.scss';
+
+.sidebar {
+  position: fixed;
+  top: 40px; /* locate below navbar */
+  left: -400px;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 50px;
+  background: $color-black;
+  z-index: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "Ubuntu", sans-serif;
+  transition: left 300ms;
+  -webkit-transition: left 300ms;
+
+  @media (min-width: 800px) {
+    left: -300px;
+    width: 200px;
+    padding: 50px;
+  }
+
+  h1 {
+    font-size: $fontsize-h1-mobile;
+    margin-bottom: 10px;
+
+    @media(min-width: 800px) {
+      font-size: $fontsize-h1-desktop;
+    }
+  }
+
+  form {
+    margin-left: 50px;
+
+    @media (min-width: 800px) {
+      margin-left: 25px;
+    }
+  }
+
+  /* oval sliding container */
+  .oval-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #ababab;
+    border-radius: 20px;
+    transition: all 300ms ease;
+
+    /* circle in oval */
+    &:after {
+      position: absolute;
+      content: '';
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      top: 1px;
+      left: 1px;
+      transition: all 300ms ease;
+    }
+  }
+
+  .label-term {
+    position: relative;
+    top: 2px;
+    margin-left: 75px;
+    font-size: $fontsize-mobile-1;
+
+    @media (min-width: 800px) {
+      top: 8px;
+      font-size: $fontsize-desktop-1;
+    }
+  }
+
+
+  .cbox-label {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 30px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+
+    input {
+      /* hide actual checkbox */
+      display: none;
+
+      /* change to green when checked */
+      &:checked + .oval-container {
+        background: #5fcf80;
+      }
+
+      /* move the circle when clicked */
+      &:checked + .oval-container:after {
+        transform: translateX(30px);
+      }
+    }
+  }
+
+  /* radio buttons in form */
+  .segmented-control-types {
+    display: flex;
+    max-width: 200px;
+    width: 100%;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: $fontsize-mobile-1;
+    border-radius: 5px;
+    color: $color-blue;
+    background-color: #fff;
+    overflow: hidden;
+
+    @media (min-width: 800px) {
+      font-size: $fontsize-desktop-1;
+      max-width: 151px;
+    }
+
+    /* hide the radio button */
+    input {
+      display: none;
+    }
+
+    input:checked + label {
+      color: #fff;
+    }
+
+    input:nth-of-type(1):checked ~ label:last-of-type:before {
+      transform: translateX(calc(0% + 0px));
+    }
+
+    input:nth-of-type(2):checked ~ label:last-of-type:before {
+      transform: translateX(calc(100% + 0px));
+    }
+
+    label {
+      flex: 1;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      padding: 6px 3px;
+      transition: color 250ms cubic-bezier(0, 0.95, 0.38, 0.98);
+    }
+
+    label:last-of-type:before {
+      content: "";
+      display: block;
+      max-width: calc(50% - 0px);
+      margin: 0px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      transform: translateX(0);
+    }
+
+    label:before {
+      background: $color-blue;
+      transition: all 250ms cubic-bezier(0, 0.95, 0.38, 0.98);
+    }
+
+    label:not(:last-child) {
+      border-right: 1px solid $color-blue;
+    }
+  }
+
+  button {
+    background-color: #fff;
+    border: none;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: $fontsize-mobile-1;
+    border-radius: 2px;
+
+    @media (min-width: 800px) {
+      font-size: $fontsize-desktop-1;
+
+      &:hover {
+        background-color: rgb(200, 200, 200);
+      }
+    }
+  }
+
+}
