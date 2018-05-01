@@ -18,9 +18,22 @@ class Sidebar extends Component {
       });
     }
 
+    // restore previous state if possible
+    if (localStorage.options) {
+      for (const [key, value] of Object.entries(JSON.parse(localStorage.options))) {
+        this.state[key] = value;
+      }
+    }
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
+  }
+
+  componentDidMount() {
+    if (localStorage.options) {
+      this.props.onComplete(this.state);
+    }
   }
 
   handleSubmit(e) {

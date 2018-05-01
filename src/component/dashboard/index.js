@@ -20,6 +20,9 @@ class Dashboard extends Component {
     let devices = Object.keys(options)
       .filter(opt => options[opt] && opt !== 'duration');
 
+    // save options to localStorage to persist through page reloads
+    localStorage.options = JSON.stringify(options);
+
     // If no devices exist, remove all charts
     if (!devices.length) {
       this.setState({rawData: []});
