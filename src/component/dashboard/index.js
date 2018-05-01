@@ -14,6 +14,22 @@ class Dashboard extends Component {
 
     this.getDiagnosticData = this.getDiagnosticData.bind(this);
     this.generateChartData = this.generateChartData.bind(this);
+    this.getYLabel = this.getYLabel.bind(this);
+  }
+
+  getYLabel(device) {
+    switch (device) {
+    case 'cpu':
+      return 'Processor Load Percentage';
+    case 'disk':
+      return 'Disk Space Usage Percentage';
+    case 'network':
+      return 'Network Load Percentage';
+    case 'memory':
+      return 'Memory Usage Percentage';
+    default:
+      return 'Unknown Metric';
+    }
   }
 
   getDiagnosticData(options) {
@@ -48,6 +64,10 @@ class Dashboard extends Component {
             return result;
           }, {});
           devData.device = dev;
+          devData.xAxisLabel = options.duration === 'hr'
+            ? 'Seconds'
+            : 'Minutes';
+          devData.yAxisLabel = this.getYLabel(dev);
           rawData.push(devData);
         });
 
@@ -60,6 +80,8 @@ class Dashboard extends Component {
   generateChartData(rawDeviceData) {
     return {
       device: rawDeviceData.device,
+      xAxisLabel: rawDeviceData.xAxisLabel,
+      yAxisLabel: rawDeviceData.yAxisLabel,
       chartData: {
         labels: rawDeviceData.toffset,
         datasets: [{
@@ -92,7 +114,7 @@ class Dashboard extends Component {
     let chartData = this.state.rawData
       ? this.state.rawData.map(device => this.generateChartData(device))
       : null;
-    console.log(this.state);
+    console.log('state:', this.state);
     console.log('Chartdata:', chartData);
     return (
       <React.Fragment>
@@ -104,8 +126,8 @@ class Dashboard extends Component {
                   <Chart
                     device={devChartData.device}
                     chartData={devChartData.chartData}
-                    xAxisLabel='Seconds'
-                    yAxisLabel='Usage'
+                    xAxisLabel={devChartData.xAxisLabel}
+                    yAxisLabel={devChartData.yAxisLabel}
                   />
                 </div>
               )
