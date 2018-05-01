@@ -1,4 +1,3 @@
-import './dashboard.scss';
 import React, { Component } from 'react';
 import Sidebar from '../sidebar';
 import Chart from '../chart';

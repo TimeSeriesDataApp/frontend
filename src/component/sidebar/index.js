@@ -1,4 +1,3 @@
-import './sidebar.scss';
 import React, { Component } from 'react';
 import { renderIfElse } from '../../lib/utils';
 
