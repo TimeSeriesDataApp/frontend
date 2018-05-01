@@ -51,8 +51,6 @@ class Dashboard extends Component {
           rawData.push(devData);
         });
 
-        console.log('rawData', rawData);
-
         // update the state and re-render
         this.setState({rawData});
       })
@@ -60,7 +58,6 @@ class Dashboard extends Component {
   }
 
   generateChartData(rawDeviceData) {
-    console.log(rawDeviceData);
     return {
       device: rawDeviceData.device,
       chartData: {

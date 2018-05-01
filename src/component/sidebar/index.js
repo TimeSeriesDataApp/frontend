@@ -31,6 +31,7 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
+    // restore charts from previous selections
     if (localStorage.options) {
       this.props.onComplete(this.state);
     }
