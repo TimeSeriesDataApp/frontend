@@ -1,16 +1,22 @@
 import './sidebar.scss';
 import React, { Component } from 'react';
-import { renderIf } from '../../lib/utils';
+import { renderIfElse } from '../../lib/utils';
 
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      duration: 'hr',
-    };
+    this.state = {};
 
     // configure checkbox defaults
-    this.props.devices.map(dev => this.state[dev.name] = false);
+    if (this.props.selectSliders)
+      this.props.selectSliders.map(dev => this.state[dev.name] = false);
+
+    // configure state variables for segmented controls
+    if (this.props.segmentControl) {
+      this.props.segmentControl.choices.map(c => {
+        if (c.checked) this.state[this.props.segmentControl.name] = c.value;
+      });
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,8 +44,8 @@ class Sidebar extends Component {
       <div className='sidebar'>
         <form onSubmit={this.handleSubmit}>
           <h1>Diagnostics</h1>
-          {renderIf(this.props.devices.length,
-            this.props.devices.map(dev =>
+          {renderIfElse(this.props.selectSliders.length,
+            this.props.selectSliders.map(dev =>
               <div key={`${dev.name}-device`} className='cbox-label'>
                 <input
                   type='checkbox'
@@ -55,28 +61,30 @@ class Sidebar extends Component {
                 </label>
               </div>
             )
+            ,
+            <div>Ooops</div>
           )}
 
           <div className='segmented-control-types'>
-            <input
-              type='radio'
-              name='duration'
-              value='hr'
-              id='radio-hour'
-              checked={this.state.duration === 'hr'}
-              onChange={this.handleChange}
-            />
-            <label htmlFor='radio-hour'>Hour</label>
-
-            <input
-              type='radio'
-              name='duration'
-              value='wk'
-              id='radio-week'
-              checked={this.state.duration === 'wk'}
-              onChange={this.handleChange}
-            />
-            <label htmlFor='radio-week'>Week</label>
+            {renderIfElse(this.props.segmentControl,
+              this.props.segmentControl.choices.map(choice =>
+                <React.Fragment key={`_frag-${choice.value}`}>
+                  <input
+                    type='radio'
+                    name={this.props.segmentControl.name}
+                    value={choice.value}
+                    id={`radio-${choice.value}`}
+                    checked={this.state[this.props.segmentControl.name] === choice.value}
+                    onChange={this.handleChange}
+                  />
+                  <label htmlFor={`radio-${choice.value}`}>
+                    {choice.label}
+                  </label>
+                </React.Fragment>
+              )
+              ,
+              <div>Ooops</div>
+            )}
           </div>
 
           <button type="submit">Fetch</button>

@@ -80,15 +80,25 @@ class Dashboard extends Component {
       { name: 'network', label: 'Network' },
     ];
 
+    // diagnostic duration options
+    let timeOptions = {
+      name: 'duration',
+      choices: [
+        { label: 'Hour', value: 'hr', checked: true},
+        { label: 'Week', value: 'wk' },
+      ],
+    };
+
     let chartData = this.state.rawData
       ? this.state.rawData.map(device => this.generateChartData(device))
       : null;
     console.log(this.state);
+    console.log('Chartdata:', chartData);
     return (
       <React.Fragment>
         <div className='dashboard'>
           <div className='chart-list columns'>
-            {renderIf(chartData,
+            {renderIf(chartData.length,
               chartData.map((devChartData, idx) =>
                 <div key={`chart-${devChartData.device}`} className='chart-div'>
                   <Chart
@@ -101,8 +111,15 @@ class Dashboard extends Component {
               )
             )}
           </div>
+          {renderIf(chartData.length === 0,
+            <div className='no-diagnostics'><p>Please choose device diagnostics...</p></div>
+          )}
         </div>
-        <Sidebar devices={devices} onComplete={this.getDiagnosticData} />
+        <Sidebar
+          selectSliders={devices}
+          onComplete={this.getDiagnosticData}
+          segmentControl={timeOptions}
+        />
       </React.Fragment>
     );
   }
