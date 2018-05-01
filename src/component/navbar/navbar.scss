@@ -1,6 +1,8 @@
+@import '../../style/variables.scss';
+
 .navbar {
   overflow: hidden;
-  background-color: #000;
+  background-color: $color-black;
   position: fixed;
   top: 0;
   width: 100%;
@@ -9,16 +11,16 @@
 
   h1 {
     text-align: center;
-    font-size: 25px;
+    font-size: 2rem;
     font-family: "Ubuntu", sans-serif;
-    margin-top: 5px;
+    margin-top: 8px;
   }
 
   /* menu toggle hamburger */
   .label-sidebar-toggle {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    font-size: 40px;
+    font-size: 3.2rem;
     float: left;
     margin-left: 10px;
   }

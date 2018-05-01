@@ -87,7 +87,6 @@ class Dashboard extends Component {
     return (
       <React.Fragment>
         <div className='dashboard'>
-          <h2>Dashboard</h2>
           <div className='chart-list'>
             {renderIf(chartData,
               chartData.map(devChartData =>

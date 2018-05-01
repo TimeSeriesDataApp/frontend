@@ -36,8 +36,8 @@ class Sidebar extends Component {
   render() {
     return (
       <div className='sidebar'>
-        <h1>Diagnostics</h1>
         <form onSubmit={this.handleSubmit}>
+          <h1>Diagnostics</h1>
           {renderIf(this.props.devices.length,
             this.props.devices.map(dev =>
               <div key={`${dev.name}-device`} className='cbox-label'>
@@ -57,7 +57,7 @@ class Sidebar extends Component {
             )
           )}
 
-          <div className='duration-types'>
+          <div className='segmented-control-types'>
             <input
               type='radio'
               name='duration'
@@ -79,7 +79,7 @@ class Sidebar extends Component {
             <label htmlFor='radio-week'>Week</label>
           </div>
 
-          <button type="submit">Update</button>
+          <button type="submit">Fetch</button>
         </form>
       </div>
     );
