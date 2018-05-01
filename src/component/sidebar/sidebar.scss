@@ -84,8 +84,8 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     position: relative;
     z-index: 1;
-    margin: 0 auto;
-    font-size: 12px;
+    margin: 10px auto;
+    font-size: 16px;
     border-radius: 3px;
     color: #3395DE;
     justify-content: center;
@@ -142,6 +142,22 @@
 
     label:not(:last-child) {
       border-right: 1px solid #3395DE;
+    }
+  }
+
+  button {
+    background-color: #fff;
+    border: none;
+    color: rgba(0, 0, 0, 0.8);
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: rgb(200, 200, 200);
     }
   }
 }
