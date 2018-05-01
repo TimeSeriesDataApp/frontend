@@ -1,5 +1,6 @@
+@import '../../style/variables.scss';
+
 .dashboard {
-  position: relative;
-  top: 45px; /* locate below navbar */
   z-index: 0;
+  background-color: $color-lightblack;
 }

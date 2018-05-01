@@ -4,40 +4,42 @@ import { Line } from 'react-chartjs-2';
 class Chart extends Component {
   render() {
     return (
-      <Line
-        data={this.props.chartData}
-        options={{
-          showLines: true,
-          title: {
-            display: true,
-            text: this.props.device,
-            fontSize: 25,
-          },
-          scales: {
-            xAxes: [{
+      <div className='line-chart'>
+        <Line
+          data={this.props.chartData}
+          options={{
+            showLines: true,
+            title: {
               display: true,
-              scaleLabel: {
+              text: this.props.device,
+              fontSize: 25,
+            },
+            scales: {
+              xAxes: [{
                 display: true,
-                labelString: this.props.xAxisLabel,
-              },
-            }],
-            yAxes: [{
-              display: true,
-              scaleLabel: {
+                scaleLabel: {
+                  display: true,
+                  labelString: this.props.xAxisLabel,
+                },
+              }],
+              yAxes: [{
                 display: true,
-                labelString: this.props.yAxisLabel,
-              },
-              ticks: {
-                beginAtZero: true,
-                steps: 10,
-                stepValue: 5,
-                max: 100,
-              },
-            }],
-          },
-        }}
-      />
-    )
+                scaleLabel: {
+                  display: true,
+                  labelString: this.props.yAxisLabel,
+                },
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100,
+                },
+              }],
+            },
+          }}
+        />
+      </div>
+    );
   }
 }
 

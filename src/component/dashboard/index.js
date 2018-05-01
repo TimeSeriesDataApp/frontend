@@ -89,7 +89,7 @@ class Dashboard extends Component {
         <div className='dashboard'>
           <div className='chart-list'>
             {renderIf(chartData,
-              chartData.map(devChartData =>
+              chartData.map((devChartData, idx) =>
                 <div key={`chart-${devChartData.device}`} className='chart-div'>
                   <Chart
                     device={devChartData.device}
