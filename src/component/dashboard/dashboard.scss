@@ -1,5 +1,9 @@
 @import '../../style/variables.scss';
 
+body {
+  background-color: $color-lightblack;
+}
+
 .dashboard {
   z-index: 0;
   margin-top: 40px;
