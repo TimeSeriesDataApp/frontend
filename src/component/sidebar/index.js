@@ -61,6 +61,7 @@ class Sidebar extends Component {
             this.props.selectSliders.map(dev =>
               <div key={`${dev.name}-device`} className='cbox-label'>
                 <input
+                  className='select-slider'
                   type='checkbox'
                   name={dev.name}
                   id={`cbox${dev.name}`}
@@ -83,6 +84,7 @@ class Sidebar extends Component {
               this.props.segmentControl.choices.map(choice =>
                 <React.Fragment key={`_frag-${choice.value}`}>
                   <input
+                    className='segment-control'
                     type='radio'
                     name={this.props.segmentControl.name}
                     value={choice.value}
